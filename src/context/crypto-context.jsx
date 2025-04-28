@@ -49,13 +49,13 @@ export function CryptoContextProvider({children}) {
                 .catch(err => console.error(err));
             
             const dataAssets = JSON.parse(localStorage.getItem('assets'))
-            const dataAsset = [{
+            const defaultAsset = [{
                 amount: 4,
                 id: 'bitcoin',
                 price: '65234'
             }]
             setCoins(data)
-            setAssets(mapAssets(dataAssets.length ? dataAssets : dataAsset, data))
+            setAssets(mapAssets(dataAssets.length ? dataAssets : defaultAsset, data))
             setLoading(false)
         }
         load()
