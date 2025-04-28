@@ -15,6 +15,7 @@ export function CryptoContextProvider({children}) {
     const [assets, setAssets] = useState([])
 
     function mapAssets(assets, data) {
+        console.log(assets, data)
         const newAssets = assets.map(asset => {
             const coin = data.find(coin => coin.id == asset.id)
             return {
@@ -48,9 +49,13 @@ export function CryptoContextProvider({children}) {
                 .catch(err => console.error(err));
             
             const dataAssets = JSON.parse(localStorage.getItem('assets'))
-
+            const dataAsset = [{
+                amount: 4,
+                id: 'bitcoin',
+                price: '65234'
+            }]
             setCoins(data)
-            setAssets(mapAssets(dataAssets, data))
+            setAssets(mapAssets(dataAssets.length ? dataAssets : dataAsset, data))
             setLoading(false)
         }
         load()
